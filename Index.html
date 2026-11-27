@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRAPHIX | Poster Gallery</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090909;color:white;font-family:Arial}
+header{padding:25px 7%;border-bottom:1px solid #333}
+header h1{letter-spacing:4px}
+span{color:#ff263f}
+.hero{padding:80px 7%;background:linear-gradient(120deg,#310b13,#090909)}
+.hero h2{font-size:55px}
+.hero p{color:#bbb}
+button{background:#ff263f;color:white;border:0;padding:14px 22px;cursor:pointer}
+.gallery{padding:40px 7%}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grid img{width:100%;border-radius:5px}
+.admin{padding:35px 7%;background:#171717}
+input{padding:13px;width:100%;margin:10px 0;background:#292929;color:white;border:1px solid #555}
+footer{text-align:center;padding:25px;color:#888}
+</style>
+</head>
+<body>
+<header><h1>GRA<span>PHIX</span></h1>CREATIVE DESIGN STUDIO</header>
+<section class="hero">
+<p>WELCOME TO MY WORLD</p>
+<h2>DESIGN<br><span>YOUR VISION.</span></h2>
+<p>My Creative Poster Collection</p>
+</section>
+<section class="gallery">
+<h2>MY <span>POSTERS</span></h2>
+<div class="grid" id="gallery"></div>
+</section>
+<section class="admin">
+<h2>ADMIN PANEL</h2>
+<input type="password" id="pass" placeholder="Admin password">
+<button onclick="login()">LOGIN</button>
+<div id="upload" hidden>
+<input type="file" id="files" accept="image/*" multiple>
+<button onclick="addPosters()">ADD POSTERS</button>
+</div>
+</section>
+<footer>© 2026 GRAPHIX</footer>
+<script>
+function login(){
+if(document.getElementById('pass').value==='graphix123'){
+document.getElementById('upload').hidden=false;
+}else alert('Wrong password');
+}
+function addPosters(){
+const files=document.getElementById('files').files;
+for(const file of files){
+const reader=new FileReader();
+reader.onload=e=>{
+const img=document.createElement('img');
+img.src=e.target.result;
+document.getElementById('gallery').appendChild(img);
+};
+reader.readAsDataURL(file);
+}
+}
+</script>
+</body>
+</html>
